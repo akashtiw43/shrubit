@@ -4,6 +4,9 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import SubscriptionsOutlinedIcon from '@mui/icons-material/SubscriptionsOutlined';
 
 import image from '../Images/anyrgb.com.png'
+const vars={
+  marginBottom:'51px'
+}
 export default function Main() {
   return (
     <main>
@@ -23,7 +26,7 @@ export default function Main() {
         <div className='socials'>
             <FacebookOutlinedIcon/>
             <EmailOutlinedIcon/>
-            <SubscriptionsOutlinedIcon/>
+            <SubscriptionsOutlinedIcon style={{marginBottom:'15px'}}/>
         </div>
     </div>
     </main>
