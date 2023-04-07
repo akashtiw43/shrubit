@@ -14,7 +14,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.App{
+.app{
   border-radius: 19px;
   
   overflow-x: hidden;
@@ -25,6 +25,8 @@ code {
   border-radius: 9px;
   display: flex;
   flex-direction: row;
+  background:  rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 nav{
   background: transparent;
@@ -39,16 +41,24 @@ nav{
   align-items: center;
   cursor: pointer;
 }
+
 .links{
   list-style: none;
   display: flex;
   justify-content: space-between;
+  
 }
+
+
 .links>*{
   margin: 0 15px;
   text-transform: capitalize;
   cursor: pointer;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.head{
+  
+  text-decoration: none;
 }
 .navigate{
   background: rgb(20,46,56);
@@ -214,6 +224,7 @@ main{
 }
 .service-cont{
   padding: 10px 15px;
+  text-align: center;
 }
 .service-cont:hover{
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -262,13 +273,11 @@ main{
 /*----xxxxxxx---banner---xxxxx-----*/
 
 
-.footer{
-  display: flex;
+footer{
+  
   color: white;
   background-color: rgb(20,46,56);
-  justify-content: center;
-  align-items: center;
-  padding: 3rem 0;
+  padding: 1rem 0;
 }
 
 
@@ -291,17 +300,18 @@ main{
 
 .product-cont{
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 22% 78%;
 }
 .product-sidebar{
-  padding: 20px;
-  background-color: red;
+  padding: 10px;
+ 
 }
-.product-sidebar > *{
-  height: 80%;
+.product-sidebar{
+  height: 50%;
   padding: 20px;
-  color: white;
+  border-radius: 5px;
   background-color: rgb(20,46,56);
+  color:white;
 }
 .product-main{
   display: flex;
@@ -378,3 +388,11 @@ main{
 }
 
 /*---xxxxxx----------Product----xxxx----*/
+
+
+
+/*---xxxxxx----------SingleProduct----xxxx----*/
+
+.prod-container{
+  display: flex;
+}
