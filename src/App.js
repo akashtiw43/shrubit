@@ -1,30 +1,26 @@
 
 import React from "react"
 import "./App.css";
+import Cart from "./Components/Cart";
+import Home from "./Components/Home";
 import Navbar from "./Components/Navbar"
-import Main from "./Components/Main"
-import PostMain from "./Components/PostMain"
-import Banner from "./Components/Banner"
+import Products from "./Components/Products";
 import Footer  from "./Components/Footer";
 import ProductPage from "./Components/ProductPage";
+import Login from "./Components/Login";
+import { Routes,Route } from "react-router-dom";
+import { useDispatch , useSelector } from "react-redux";
+import {summation} from "./Components/Features/Cart/CartSlice"
 function App() {
-  const [product,setProduct]=React.useState(true)
-  const plants=[{src:"plant1.webp",name:"Cactus & Succulents"},{src:"plant2.webp",name:"Bonsai Plants"},
-                {src:"plant3.webp",name:"Flowering Plants"},{src:"p4.webp",name:"Climbers & Creepers"}]
-
-  const acc=[{src:"q1.webp",name:"Border Spades"},{src:"q2.webp",name:"Splitters"},
-             {src:"q3.webp",name:"Shovel"},{src:"q4.webp",name:"Garden Weeders"}]
-  
-  const serv=[{src:"s1.webp",name:"Terrace Garden",info:"Our trained staff make each project with passion and bring to life a designed environment with creativity"}
-             ,{src:"s2.jpg",name:"Row Houses",info:"Our trained staff make each project with passion and bring to life a designed environment with creativity"},
-              {src:"s3.webp",name:"Maintenance Service",info:"Our trained staff make each project with passion and bring to life a designed environment with creativity"},
-              {src:"s4.webp",name:"Rental Programs",info:"Our trained staff make each project with passion and bring to life a designed environment with creativity"}]
-  function toggleProduct(){
-      setProduct(prev=>!prev)
-  }
+  const cartItems=useSelector((store)=> store.cart)
+  // console.log("fwa"+cartItems)
+  const dispatch=useDispatch()
+  React.useEffect(()=>{
+    dispatch(summation())
+  },[cartItems])
     return (
     <div className="App">
-      { product?
+      {/* { product?
         <>
           <ProductPage  toggle={toggleProduct}/>
         </>:
@@ -37,7 +33,16 @@ function App() {
           <Banner title="Services" data={serv}/>
           <Footer/>
        </>
-      }
+      } */}
+      <Navbar/>
+      <Routes>
+        <Route path="/"element={<Home/>}/>
+        <Route path="/products"element={<ProductPage/>}/>
+        <Route path="/product/:id" element={<Products/>}/>
+        <Route path="/cart"element={<Cart/>}/>
+        <Route path="/login"element={<Login/>}/>
+      </Routes>
+      <Footer/>
     </div>
   );
 }
