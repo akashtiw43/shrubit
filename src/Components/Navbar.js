@@ -4,10 +4,12 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import GrassOutlinedIcon from '@mui/icons-material/GrassOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import AddShoppingCartSharpIcon from '@mui/icons-material/AddShoppingCartSharp';
 import MenuOpenOutlinedIcon from '@mui/icons-material/MenuOpenOutlined';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 export default function Navbar(props) {
+
 const vars={
   color:'rgb(20,46,56)',
   fontSize:'2.5rem'
@@ -32,7 +34,9 @@ const {amount} = useSelector((store)=>store.cart)
             <li>Contact us</li>
           </div>
       </nav>
+      
       <div className='navigate'>
+      
         <SearchOutlinedIcon style={navIcon}/>
         <Link to='/login' className='no-decoration'><PersonOutlineOutlinedIcon style={navIcon}/></Link>
         <div className='cart-logo'>

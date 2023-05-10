@@ -1,3 +1,5 @@
+import { GlobalStyle } from './Components/GlobalStyle';
+
 
 import React from "react"
 import "./App.css";
@@ -44,7 +46,11 @@ function App() {
       </Routes>
       <Footer/>
     </div>
-  );
+  )
 }
+
+
+
+
 
 export default App;

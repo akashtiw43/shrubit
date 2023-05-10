@@ -23,11 +23,11 @@ export default function Main() {
         <div className='circle'>
             <img className='circle-img'src={image}/>
         </div>
-        <div className='socials'>
+        {/* <div className='socials'>
             <FacebookOutlinedIcon/>
             <EmailOutlinedIcon/>
             <SubscriptionsOutlinedIcon style={{marginBottom:'15px'}}/>
-        </div>
+        </div> */}
     </div>
     </main>
   )

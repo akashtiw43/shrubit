@@ -1,16 +1,25 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import StarIcon from '@mui/icons-material/Star';
-import { useParams } from 'react-router-dom';
 import Data from './Data'
-import { useSelector } from 'react-redux';
+const images = {
+    image1:require('../Images/bonsai1.webp'),
+    image2:require('../Images/bonsai2.webp')
+}
 
 
 export default function Products(){
+    
+    const id=useParams().id
+    console.log(id);
+    const prod=Data.find((item)=>item.id==id)
+    console.log(prod);
+    var code=require(`../Images/${prod.coverImg}`)
+    const[selectImg , setSelectImg] = useState(code);
+    const[items,setItems] = useState(0);
+
     const Wrapper = styled.section`
       .prod-container{
         padding:20px 50px;
@@ -50,10 +59,9 @@ export default function Products(){
         display:flex;
         flex-direction:column;
         // gap:1rem;
-        padding-left:1rem;
+        padding-left:2rem;
       }
       h1{
-        text-align:start;
         color:black;
         margin-bottom : 0;
         font-size:1.8rem;
@@ -61,36 +69,30 @@ export default function Products(){
         letter-spacing:3px;
       }
       p{
-        text-align:start;
         font-size:1rem;
         color:grey;
         margin-bottom:2rem;
       }
       .quantitydesc{
         display:flex;
-        align-items:center;
         gap:0.5rem;
       }
       .prodquant{
         // text-align:center;
-        font-size:1.2rem;
-        font-weight:500;
         transform:translateY(-1px);
       }
       .additem , .subtractitem{
+        border:1px solid grey;
+        padding:3px;
+        background-color:lightgrey;
         border-radius:5px;
-        font-size:1.2rem;
-        color:gray;
+        font-size:0.8rem;
       }
       .btn-cont{
         display:flex;
         gap:1rem;
       }
       .addtocart{
-        display:flex;
-        gap:0.5rem;
-        justify-content:center;
-        align-items:center;
         color: white;
         font-weight: 400;
         font-size: 1.1rem;
@@ -137,21 +139,8 @@ export default function Products(){
         }
       }
     `;
-    const {id}=useParams()
-    const currItem=Data.find((item)=>item.id==id)
     
-    // var quant=currItem.qty
-    const images = {
-    image1:require(`../Images/${currItem.coverImg}`),
-    image2:require('../Images/plant2.webp')
-    }
-    const[selectImg , setSelectImg] = useState(images.image1);
-    const[items,setItems] = useState(1);
-    let cartItems=useSelector((store)=>store.cart)
-    const addToCart=()=>{
-        cartItems={...cartItems,currItem}
-    }
-    // const images = ["bonsai1.webp", "bonsai2.webp"];~
+
     return(
         <>  
             <Wrapper>
@@ -166,21 +155,21 @@ export default function Products(){
                     </div>
                 </div>
                 <div className="prod-details">
-                   <h1>{currItem.title}</h1>
-                   <h4 className='product-price' style={{marginTop:'5px',fontWeight:700,fontSize:'1.2rem',textAlign:'start'}}>${currItem.price}</h4>
+                   <h1>{prod.title}</h1>
+                   <h4 className='product-price' style={{marginTop:'5px',fontWeight:700,fontSize:'1.2rem'}}>{prod.price}</h4>
                    <div className="product--stats">
                       <StarIcon className="product--star" style={{fontSize:'1.3rem'}}/>
-                      <span  style={{fontSize:'1rem'}} >{currItem.stats.rating}</span>
-                      <span style={{fontSize:'1rem',marginLeft:'6px',color:'gray'}}> ({currItem.stats.reviewCount})</span>
+                      <span  style={{fontSize:'1rem'}} >{prod.stats.rating}</span>
+                      <span style={{fontSize:'1rem',marginLeft:'6px',color:'gray'}}> ({prod.stats.reviewCount})</span>
                   </div>
                    <p>The ultimate goal of growing a Bonsai is to create a miniaturized but realistic representation of nature in the form of a tree. Bonsai are not genetically dwarfed plants, in fact, any tree species can be used to grow one.</p>
                    <div className='quantitydesc'>
-                   <RemoveCircleOutlineOutlinedIcon className='subtractitem' onClick={()=>{if(items!==1){setItems(items-1)}}}/>
+                   {/* <GrAdd className='additem' onClick={()=>{setItems(items+1)}}/> */}
                    <span className='prodquant'>{items}</span>
-                   <AddCircleOutlineOutlinedIcon className='additem' onClick={()=>{setItems(items+1)}}/>
+                   {/* <BiMinus className='subtractitem' onClick={()=>{if(items!==0){setItems(items-1)}}}/> */}
                    </div>
                    <div className='btn-cont'>
-                      <button className='addtocart'onClick={()=>addToCart()}> <LocalMallOutlinedIcon className='bag'/>ADD TO CART</button>
+                      <button className='addtocart'> ADD TO CART</button>
                       <button className='wishlist'> <FavoriteBorderOutlinedIcon  style={{fontSize:'1.3rem'}}/> WISHLIST</button>
                    </div>
                 </div>
