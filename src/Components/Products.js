@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import Data from './Data'
+import { useDispatch } from 'react-redux';
+import { addToCart } from './Features/Cart/CartSlice';
 const images = {
     image1:require('../Images/bonsai1.webp'),
     image2:require('../Images/bonsai2.webp')
@@ -11,7 +13,7 @@ const images = {
 
 
 export default function Products(){
-    
+    const dispatch=useDispatch()
     const id=useParams().id
     console.log(id);
     const prod=Data.find((item)=>item.id==id)
@@ -169,7 +171,16 @@ export default function Products(){
                    {/* <BiMinus className='subtractitem' onClick={()=>{if(items!==0){setItems(items-1)}}}/> */}
                    </div>
                    <div className='btn-cont'>
-                      <button className='addtocart'> ADD TO CART</button>
+                      <button className='addtocart' onClick={()=>dispatch(addToCart({
+                        id:prod.id,
+                        coverImg:prod.coverImg,
+                        price:prod.price,
+                        qty:prod.qty,
+                        stats:{
+                          rating:prod.stats.rating,
+                          reviewCount:prod.stats.reviewCount
+                        }
+                      }))}> ADD TO CART</button>
                       <button className='wishlist'> <FavoriteBorderOutlinedIcon  style={{fontSize:'1.3rem'}}/> WISHLIST</button>
                    </div>
                 </div>
