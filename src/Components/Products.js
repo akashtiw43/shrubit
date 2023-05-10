@@ -173,6 +173,7 @@ export default function Products(){
                    <div className='btn-cont'>
                       <button className='addtocart' onClick={()=>dispatch(addToCart({
                         id:prod.id,
+                        title:prod.title,
                         coverImg:prod.coverImg,
                         price:prod.price,
                         qty:prod.qty,
